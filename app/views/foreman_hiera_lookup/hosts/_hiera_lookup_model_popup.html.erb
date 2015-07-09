@@ -1,0 +1,62 @@
+<% javascript 'host_hiera_lookup' %>
+<style>
+  .borderless tr td {
+    border: none !important;
+  }
+</style>
+<div id="confirmation-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Hiera Lookup</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+        <div class="form-horizontal">
+
+          <div class="form-group ">
+            <div class="col-md-12">
+              <form name="hiera_lookup_form" onSubmit="return false;">
+                <div class="col-md-11" style="padding-left:0px;">
+                  <input type="text" name="hiera_variable" id="hiera_variable" placeholder="Hiera variable" class="form-control " focus-me="focusInput" autofocus>
+                  <div id="hiera_variable_error" class="text-danger"></div>
+                </div>
+                <div class="col-md-1">
+                  <input type="submit" onclick="get_hiera_lookup_value()" value="Get" name="commit" id="hiera_variable_get" class="btn btn-primary">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-12" id="hiera_variable_value">
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-12">
+
+              <table class="table borderless" >
+                <tbody id="hiera_variable_found_and_dependencies">
+                  
+                </tbody>
+
+              </table>
+              
+            </div>
+          </div>
+
+        </div>
+        
+
+        
+
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

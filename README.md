@@ -1,6 +1,6 @@
 # Foreman Hiera Lookup
 
-This plugin helps puppet developers debug hiera. It shows to a Foreman user a value of Hiera variable for a specific host. This plugin executes hiera locally when fetching the value provided by hiera, so it supposed that your foreman machine hosts also a fully operational puppet master.
+This plugin helps puppet developers debug hiera. It shows to a Foreman user a value of Hiera variable for a specific host. This plugin executes hiera locally when fetching the value provided by hiera, so it supposed that your foreman machine have also a fully operational puppet master.
 
 
 ## Installation

@@ -36,10 +36,10 @@ In host details page, there is a button "Hiera Lookup" in left side under Detail
 
 Below API will return hiera value of given hiera variable on given host.
 
-API request
+API request from the host 
 
 ```yaml
-$> curl -u 'admin:changeme' -H 'accept:application/json'  'http://localhost:3000/api/hosts/:host_id/hiera_lookup' -d 'hiera_variable=variable' -X GET
+$> curl -u 'admin:changeme' -H 'accept:application/json'  'http://myforeman/api/hosts/:host_id/hiera_lookup' -d 'hiera_variable=variable' -X GET
 ```
 
 API response
@@ -64,8 +64,23 @@ API response
   "value":"specific-for-staging-with-dep1"
 }
 ```
-
 NOTE: This API is available only on V2
+
+
+You can also create a script that checks hiera varible directly from node:  
+```bash
+cat hiera-foreman
+curl -u 'admin:changeme' -H 'accept:application/json'  'http://myforeman/api/hosts/$(facter fqdn)/hiera_lookup' -d 'hiera_variable=$1' -X GET
+```
+Usage:
+```
+$> hiera-foreman class::variable
+{ 
+  ...
+  "value":"specific-for-staging-with-dep1"
+}
+```
+
 
 ## Contributing
 

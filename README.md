@@ -71,7 +71,7 @@ NOTE: This API is available only on V2
 
 Fork and send a Pull Request. Thanks!
 
-## Copyright
+## License
 
-Copyright (c) 2015 Ingenico
+GPLv3
 

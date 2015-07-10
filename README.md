@@ -1,6 +1,7 @@
-# ForemanHieraLookup
+# Foreman Hiera Lookup
 
-Showing to a foreman user a value of hiera variable for a specific host
+This plugin helps puppet developers debug hiera. It shows to a Foreman user a value of Hiera variable for a specific host. This plugin executes hiera locally when fetching the value provided by hiera, so it supposed that your foreman machine hosts also a fully operational puppet master.
+
 
 ## Installation
 
@@ -13,9 +14,9 @@ Add below content to settings.yaml file
 
 ```yaml
 :hiera_lookup:
-  :secured_backend: ['PGP'] # These are the array of BACKEND values, which mask the values of variables 
+  :secured_backend: ['GPG'] # These are the array of BACKEND values, which mask the values of variables 
   :url_templates:
-    :YAML:  "http://sysgit01.lab.services.ingenico.com/puppet/puppet-hieradata/blob/#{level.gsub('environments/', '')}.yaml" # This is the template URL in the gitlab, level is the YAML file path where the variable found.  Example level=environments/dev/staging
+    :YAML:  "http://gitlab/puppet/puppet-hieradata/blob/#{level.gsub('environments/', '')}.yaml" # This is the template URL in the gitlab, level is the YAML file path where the variable found.  Example level=environments/dev/staging
 ```
 
 You will need to restart Foreman for changes to take effect, as the `settings.yaml` is
@@ -43,7 +44,7 @@ $> curl -u 'admin:changeme' -H 'accept:application/json'  'http://localhost:3000
 
 API response
 
-```yaml
+```json
 {
   "dependency":[
     {
@@ -51,18 +52,17 @@ API response
         {
           "backend":"YAML",
           "path":"environments/dev/common",
-          "url":"http://sysgit01.lab.services.ingenico.com/puppet/puppet-hieradata/blob/dev/common.yaml"
+          "url":"http://gitlab/puppet/puppet-hieradata/blob/dev/common.yaml"
         }
     }],
   "found":[
     {
       "backend":"YAML",
       "path":"environments/dev/staging",
-      "url":"http://sysgit01.lab.services.ingenico.com/puppet/puppet-hieradata/blob/dev/staging.yaml"
+      "url":"http://gitlab/puppet/puppet-hieradata/blob/dev/staging.yaml"
     }],
   "value":"specific-for-staging-with-dep1"
 }
-
 ```
 
 NOTE: This API is available only on V2

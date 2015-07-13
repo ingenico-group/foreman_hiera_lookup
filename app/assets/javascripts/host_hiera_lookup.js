@@ -1,6 +1,6 @@
 
 function load_host_hiera_lookup_popup() {
-  document.getElementById("hiera_variable").focus();
+  $("#hiera_variable_error").html("");
   $('#hiera_variable').val('');	
   $("#hiera_variable_value").html('');
   $("#confirmation-modal #hiera_variable_value").html('');
@@ -17,6 +17,7 @@ function get_hiera_lookup_value(){
 	var url = $('#host_hiera_lookup_btn').attr('data-url');
   var hiera_variable = $('#hiera_variable').val()
   if (hiera_variable != 0 && url != 0 && hiera_variable_regex.test(hiera_variable)){
+    window.location.hash = "hiera_lookup?hiera_variable=" + hiera_variable
     $("#hiera_variable_value").html("<div class='col-md-12'><img src='/assets/spinner.gif' alt='Spinner'> Loading hiera lookup value...  </div>");
     $.ajax({
       data: {},
@@ -82,3 +83,6 @@ function get_hiera_lookup_dependent_value(variable){
   get_hiera_lookup_value();
 }
 
+$('#confirmation-modal').live('hidden.bs.modal', function () {
+   window.location.hash = "";
+ });

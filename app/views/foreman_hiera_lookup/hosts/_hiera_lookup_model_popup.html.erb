@@ -60,3 +60,21 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<script type="text/javascript">
+var hiera_lookup_hash = $(location).attr('hash')
+if(hiera_lookup_hash.indexOf("hiera_lookup") >= 0){
+  load_host_hiera_lookup_popup()
+  var hiera_variable = ""
+  var hiera_parameters = hiera_lookup_hash.split("?")
+  for(i=0; i<hiera_parameters.length; i++){
+    if(hiera_parameters[i].indexOf("hiera_variable") >= 0){
+      hiera_variable = hiera_parameters[i].split("=")[1]
+    }
+  }
+  if(hiera_variable != ""){
+    get_hiera_lookup_dependent_value(hiera_variable)
+  }
+}
+</script>
